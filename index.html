@@ -148,7 +148,10 @@
                 // subtract 1 from timeleft
                 $("#timeleft").text("Timeleft: " + timeleft);
                 // update the text
-
+                if (timeleft <= 3 && timeleft > 0) {
+                    $("#timeleft").addClass("red");
+                    // add class of .red change the text color to red using hexadecimals
+                }
                 if (timeleft === 0) {
                     // ends game if timeleft equals 0
                     endGame();

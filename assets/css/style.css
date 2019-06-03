@@ -27,3 +27,7 @@ body {
     font-size: 25pt;
     font-family: 'Shadows Into Light', cursive;
 }
+
+.red {
+    color: #ff2233;
+}
