@@ -21,3 +21,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+#answer,
+#timeleft {
+    font-size: 25pt;
+    font-family: 'Shadows Into Light', cursive;
+}
