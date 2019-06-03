@@ -175,23 +175,33 @@
 
             function checkAnswers() {
 
-
                 $("input:checked").each(function() {
                         // function to check answers
+
+                        // var radios = $("#answer");
+
+                        // for (var i = 0, length = radios.length; i < length; i++) {
+                        // if (radios[i].checked) {
+                        //         // do whatever you want with the checked radio
+                        // score += parseInt(radios[i].value);
+
+                        //         // only one radio can be logically checked, don't check the rest
+                        // break;
+                        //     }
+                        // }
 
                         // $('input[name=name_of_your_radiobutton]:checked').val();
                         answerValue = $("input:checked").attr('value');
                         // variable for holding the value of selected answer
 
                         score += parseInt(answerValue);
+
+
                     })
-                    //     // function to check answers
-
-                // answerValue = $(":radio").attr('value');
-                // // variable for holding the value of selected answer
-
-                // score += parseInt(answerValue);
+                    // break;
             }
+
+
 
             function restart() {
 
