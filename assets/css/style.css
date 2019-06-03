@@ -1,0 +1,23 @@
+/* #background {
+    z-index: -1;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+
+* {
+    color: #1AFF;
+}
+
+h1,
+h3 {
+    color: #ffffff;
+}
+
+head,
+body {
+    background-image: url(http://epicwallpaperz.com/wallpaper-hd/stephen-curry-golden-state-warriors-wallpaper-photo-On-wallpaper-hd.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

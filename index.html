@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia Game</title>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" href="https://dumielauxepices.net/sites/default/files/drawn-trophy-mvp-trophy-582668-970456.jpg">
+
+    <!-- <link rel="stylesheet" href="./assets/css/reset.css"> -->
+    <!-- to reset css -->
+
+
+
+</head>
+
+<body>
+    <!-- <div class="container-fluid img-responsive" style="background-image: url('https://lh3.googleusercontent.com/SSyNUnaEtWdV7uAcNeePdX4rwP2wXAaD_HW710gb90SdxM5DafM9MxBCKUn1YBjX2eH0J5CAUg=w640-h400-e365'); background-repeat: no-repeat; background-size: cover; background-position: center center;"> -->
+    <h1>Golden State Warriors Trivia!</h1>
+    <!-- <img src="./assets/images/NBA BACKGROUND.jpg" alt="NBA BACKGROUND" id="background"> -->
+    <button id="start" class="btn btn-primary">Start</button>
+    <h2>
+        <Span id="timeleft"></Span>
+    </h2>
+    <div id="questions"></div>
+    <div id="trivia">
+        <form action="">
+            <div class="form-check form-check-inline" class="question" id="Question 1">
+                <h3>Who wears the number 30 on the Golden State Warriors?</h3>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="correct" value="1">
+                <label class="form-check-label" for="inlineRadio1" id="answer">Stephen Curry</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+                <label class="form-check-label" for="inlineRadio2" id="answer">Klay Thompson</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+                <label class="form-check-label" for="inlineRadio3" id="answer">Kevin Durant</label>
+            </div>
+            <br>
+        </form>
+        <form action="">
+            <div class="form-check form-check-inline" class="question" id="Question 2">
+                <h3>What historical record for best season record did the warriors have?</h3>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="correct" value="1">
+                <label class="form-check-label" for="inlineRadio1">73-9</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+                <label class="form-check-label" for="inlineRadio2">71-11</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+                <label class="form-check-label" for="inlineRadio3">73-10</label>
+            </div>
+        </form>
+        <div class="form-check form-check-inline" class="question" id="Question 3">
+            <h3>What is the name of the Golden State Warriors coach?</h3>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="correct" value="1">
+            <label class="form-check-label" for="inlineRadio1">Steve Kerr</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+            <label class="form-check-label" for="inlineRadio2">Mark Jackson</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="incorrect" value="0">
+            <label class="form-check-label" for="inlineRadio3">Don Nelson</label>
+        </div>
+    </div>
+    <!-- make sure this gets added after start button -->
+    <button id="submit" class="btn btn-dark">Submit</button>
+    <button id="restart" class="btn btn-danger">Restart</button>
+    <!-- </div> -->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // variable that will hold our setInterval that runs the timer
+            var intervalID;
+
+            // variable for if game is running
+            var gameRunning;
+
+            // track score
+            let score = 0;
+
+            // variable for timeleft
+            let timeleft = 10;
+
+            // variable for answer value
+            let answerValue = 0;
+
+            $("#trivia").hide();
+            // start the trivia hidden
+
+            $("#submit").hide();
+            // submit button hidden
+
+            $("#restart").hide();
+            // restart button hidden
+
+            $("#start").on("click", run);
+
+            // submit button that ends game
+            $("#submit").on("click", endGame);
+
+            // restart button that runs restart function
+            $("#restart").on("click", restart);
+
+            function run() {
+
+                $("#start").hide();
+                // hide start button
+
+                $("#trivia").show();
+                // shows trivia
+
+                $("#submit").show();
+                // show submit button
+
+                $("#restart").show();
+                // show restart button 
+
+                clearInterval(intervalID);
+                // clear intervalID
+
+                intervalID = setInterval(decrement, 1000);
+                // set interval ID as decrement, 1000 ms or 1 second
+            }
+
+            function decrement() {
+                // lessens time
+
+                timeleft--;
+                // subtract 1 from timeleft
+                $("#timeleft").text("Timeleft: " + timeleft);
+                // update the text
+
+                if (timeleft === 0) {
+                    // ends game if timeleft equals 0
+                    endGame();
+
+                }
+            }
+
+
+            function endGame() {
+                $("#submit").hide();
+
+                // ending the game function
+                clearInterval(intervalID);
+                // clear interval ID
+
+                checkAnswers();
+                // check answers 
+
+                $('#timeleft').text("Your Score: " + score + " /3");
+                // display score
+
+
+            }
+
+            function checkAnswers() {
+
+
+                $("input:checked").each(function() {
+                        // function to check answers
+
+                        // $('input[name=name_of_your_radiobutton]:checked').val();
+                        answerValue = $("input:checked").attr('value');
+                        // variable for holding the value of selected answer
+
+                        score += parseInt(answerValue);
+                    })
+                    //     // function to check answers
+
+                // answerValue = $(":radio").attr('value');
+                // // variable for holding the value of selected answer
+
+                // score += parseInt(answerValue);
+            }
+
+            function restart() {
+
+                // $("radio:").attr(".checked:false");
+                // // reset answers
+
+                clearInterval(intervalID);
+                // clear intervalID
+
+                intervalID = setInterval(decrement, 1000);
+                // set interval ID as decrement, 1000 ms or 1 second
+
+                score = 0;
+                // reset score
+
+                // reset timeleft
+                timeleft = 10;
+
+                $("#submit").show();
+                // reshow submit button
+            }
+        });
+    </script>
+</body>
+
+</html>
